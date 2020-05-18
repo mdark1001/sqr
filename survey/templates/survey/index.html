@@ -38,7 +38,7 @@
                     {% for surve in surveys %}
                         <tr>
                             <td>
-                              {{ forloop.counter }}
+                                {{ forloop.counter }}
                             </td>
                             <td>
                                 {{ surve.name }}
@@ -49,8 +49,10 @@
                                 </span>
                             </td>
                             <td>
-
-
+                                <div class="buttons">
+                                    <a href="{% url 'survey:detail' surve.id %}" class="button is-primary is-light">Ver/Editar</a>
+                                    <a href="{% url 'survey:result' surve.id %}" class="button is-link is-light">Resultados</a>
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}

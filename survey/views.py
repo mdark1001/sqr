@@ -14,18 +14,26 @@ def index(request):
     return render(request, 'survey/index.html', context)
 
 
-def detail(request, question_id):
+def detail(request, survey_id):
     try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
+        survey = Survey.objects.get(pk=survey_id)
+    except Survey.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, 'survey/detail.html', {'question': question})
+    return render(request, 'survey/detail.html', {'survey': survey})
 
 
-def result(request, question_id):
+def edit(request, survey_id):
+    try:
+        survey = Survey.objects.get(pk=survey_id)
+    except Survey.DoesNotExist:
+        raise Http404("Survey does not exist")
+    return render(request, 'survey/edit.html', {'survey': survey})
+
+
+def result(request, survey_id):
     response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
+    return HttpResponse(response % survey_id)
 
 
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+def vote(request, survey_id):
+    return HttpResponse("You're voting on question %s." % survey_id)

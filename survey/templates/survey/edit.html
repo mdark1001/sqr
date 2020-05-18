@@ -1,0 +1,53 @@
+{% include 'base.html' %}
+{% block content %}
+    <div id="app">
+        <section class="hero is-danger">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                             <input type="text" class="input "
+                                    value="{{ survey.name }}"
+                                >
+                    </h1>
+                    <h3 class="subtitle">
+                    </h3>
+                </div>
+
+            </div>
+        </section>
+  <section class="container">
+            <div class="box">
+                <div class="columns is-multiline">
+                    {% for question in survey.question_set.all %}
+                        <div class="column is-12-desktop">
+                            <label for="">
+                                <strong>
+                                    {{ question.question }}
+                                </strong>
+                            </label>
+                            <div class="control">
+                                {% for choice in question.questionchoice_set.all %}
+                                    <label class="radio">
+                                        <input type="radio" name="survey[{{ survey.id }}][{{ question.id }}]">
+                                        {{ choice.choice }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+{% load static %}
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="{% static 'survey/js/templates_vue.js' %}"></script>
+    <script src="{% static 'survey/js/form_simple.js' %}"></script>
+    <script src="{% static  'survey/js/detail.js' %}"></script>
+{% endblock %}
