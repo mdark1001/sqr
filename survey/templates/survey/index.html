@@ -9,7 +9,7 @@
                     Encuestas
                 </h1>
                 <h2 class="subtitle">
-                    <button  class="button" type="button">Crear encuesta</button>
+                    <button id="btnCreateSurvey" class="button" type="button">Crear encuesta</button>
                 </h2>
             </div>
         </div>
@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <div class="buttons">
-                                    <a href="{% url 'survey:detail' surve.id %}" class="button is-primary is-light">Ver/Editar</a>
+                                    <a href="{% url 'survey:edit' surve.id %}" class="button is-primary is-light">Ver/Editar</a>
                                     <a href="{% url 'survey:result' surve.id %}" class="button is-link is-light">Resultados</a>
                                 </div>
                             </td>
@@ -69,8 +69,9 @@
             </table>
         </div>
     </div>
+    {% include 'survey/create_survey_modal.html' %}
     {% block script %} 
     <script type="text/javascript" src="{% static 'survey/js/survey.js' %}"></script>
     {%endblock%}
-    {% include 'survey/create_survey_modal.html' %}
+   
 </div>

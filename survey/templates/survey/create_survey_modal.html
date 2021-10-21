@@ -1,7 +1,18 @@
-<div class="modal">
+<div class="modal" id="modalCreateSurvey">
     <div class="modal-background"></div>
     <div class="modal-content">
-      <!-- Any other Bulma elements you want -->
-    </div>
-    <button class="modal-close is-large" aria-label="close"></button>
+        <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Create a new survey</p>
+              <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                {% csrf_token %}
+                <input type="text" name="newSurvey" id="newSurvey" class="input" placeholder="Survey's name">
+            </section>
+            <footer class="modal-card-foot">
+              <button id="createNewSurveyButton" class="button is-success">Save</button>
+              <button class="button">Cancel</button>
+            </footer>
+          </div>
   </div>

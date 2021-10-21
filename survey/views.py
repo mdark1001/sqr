@@ -1,3 +1,4 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 
@@ -7,6 +8,11 @@ from .models import Question, Survey
 # Create your views here.
 
 def index(request):
+    if request.method =='POST':
+        survey = Survey(name=request.POST.get('name'))
+        survey.save()
+        return JsonResponse({'survey_id':survey.pk})
+
     surveys = Survey.objects.filter(active=True)
     context = {
         'surveys': surveys,
